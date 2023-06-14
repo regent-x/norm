@@ -1,0 +1,22 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  test:
+    dir: '{{.USER_WORKING_DIR}}'
+    precoditions:
+      - test -f *test.go
+    cmds:
+      - go test .
+  
+  build:
+    cmds:
+      - go fmt .
+      - golint .
+      - go vet .
+      - go build .
+
